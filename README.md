@@ -14,7 +14,7 @@ Now you can clone this repository on your environment and let's go :
 
 By default, I have added the [Jane](https://github.com/xianmin/hugo-theme-jane) themes (hugo/themes/jane)
 
-But you can choose another one :
+But you can choose another one (skip this step if you want keep jane theme):
 - Upload it to the hugo/themes folder
 - Update `HUGO_THEME` in hugo/docker-compose.yml with the theme name
 
