@@ -1,0 +1,31 @@
+version: '3.9'
+services:
+  hugo:
+    container_name: myhugo
+    build: .
+    image: 'myhugo:latest'
+    volumes:
+      - './:/src'
+      - './output/:/output'
+    networks:
+      nginx-proxy:
+    environment:
+      - HUGO_REFRESH_TIME=3600
+      - HUGO_THEME=Geekblog
+      - HUGO_WATCH=1
+      - HUGO_BASEURL=yourdomain.com
+      - VIRTUAL_NETWORK=nginx-proxy
+      - VIRTUAL_PROTO=http
+      - VIRTUAL_HOST=yourdomain.com
+      - VIRTUAL_PORT=1313
+      - LETSENCRYPT_HOST=yourdomain.com
+      - LETSENCRYPT_EMAIL=your@email.com
+    ports:
+      - '1313:1313'
+    expose:
+      - 80
+    restart: always
+networks:
+  nginx-proxy:
+    external:
+      name: nginx-proxy

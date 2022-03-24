@@ -1,0 +1,41 @@
+version: "2"
+
+services:
+  nginx-proxy:
+    restart: always
+    image: jwilder/nginx-proxy
+    container_name: nginx-proxy
+    security_opt:
+      - label:type:docker_t
+    ports:
+      - "80:80"
+      - "2222:2222"
+      - "443:443"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock
+      - ./certs:/etc/nginx/certs:ro
+      - ./vhost:/etc/nginx/vhost.d
+      - ./html:/usr/share/nginx/html
+      - ./conf:/etc/nginx/conf.d
+    labels:
+      com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy: "true"
+
+  letsencrypt-nginx-proxy-companion:
+    restart: always
+    image: jrcs/letsencrypt-nginx-proxy-companion:latest
+    depends_on:
+      - nginx-proxy
+    security_opt:
+      - label:type:docker_t
+    environment:
+      NGINX_PROXY_CONTAINER: nginx-proxy
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./certs:/etc/nginx/certs
+      - ./vhost:/etc/nginx/vhost.d
+      - ./html:/usr/share/nginx/html
+
+networks:
+  default:
+    external:
+      name: nginx-proxy
