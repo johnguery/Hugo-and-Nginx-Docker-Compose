@@ -11,7 +11,7 @@ services:
       nginx-proxy:
     environment:
       - HUGO_REFRESH_TIME=3600
-      - HUGO_THEME=Geekblog
+      - HUGO_THEME=jane
       - HUGO_WATCH=1
       - HUGO_BASEURL=yourdomain.com
       - VIRTUAL_NETWORK=nginx-proxy
