@@ -1,6 +1,7 @@
 # HUGO and NGINX Docker Compose
 
 This project will allow you to launch NGINX and HUGO very quickly via docker compose.
+
 NGINX docker also handle creation of SSL certificates automatically (Let's Encrypt)
 
 To achieve this, I used the following docker images : [nginx-proxy](https://hub.docker.com/r/jwilder/nginx-proxy) from jwilder and [docker-hugo](https://hub.docker.com/r/jojomi/hugo) from jojomi.
