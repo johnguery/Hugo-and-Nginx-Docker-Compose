@@ -44,3 +44,7 @@ Then, make the start.sh file executable :
 Now, you can start both NGINX and HUGO container :
 
 `./start.sh`
+
+After few seconds, your Hugo generated static website is ready to use:
+
+`http://xxx.xxx.xxx.xxx:1313/` or `https://votredomaine.fr`
