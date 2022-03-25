@@ -47,4 +47,39 @@ Now, you can start both NGINX and HUGO container :
 
 After few seconds, your Hugo generated static website is ready to use:
 
-`http://xxx.xxx.xxx.xxx:1313/` or `https://votredomaine.fr`
+`http://xxx.xxx.xxx.xxx:1313/` or `https://your-domain.com`
+
+## Useful commands:
+
+You can check the containers state with the following command:
+
+```
+docker ps -a
+```
+
+NGINX logs (assuming, the nginx container name is "nginx-proxy"):
+
+```
+# follow log live on stdout:
+docker logs --follow nginx-proxy
+
+# show only last 10 entries:
+docker logs --tail 10 nginx-proxy
+```
+
+Hugo logs (assuming the Hugo container name is "hugo"):
+
+```
+# follow log live on stdout:
+docker logs --follow hugo
+
+# show only last 10 entries:
+docker logs --tail 10 hugo
+```
+
+Restart NGINX (assuming, the nginx container name is "nginx-proxy"):
+
+```
+docker exec -it nginx-proxy nginx -s reload
+```
+
